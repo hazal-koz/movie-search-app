@@ -1,13 +1,12 @@
 "use client";
-import { Divider, Flex, Tag, Typography } from "antd";
-import { ReactNode, useEffect, useState } from "react";
-import ImageWithFallback from "@/components/imageWithFallback";
+import { Flex, Typography } from "antd";
+import { ReactNode } from "react";
 import { StarFilled } from "@ant-design/icons";
 import styles from "./moviePage.module.css";
 import { Movie } from "@/app/movie/[id]/page";
 import { MovieGenres } from "./movieGenres";
 
-const { Title, Paragraph, Text } = Typography;
+const { Text } = Typography;
 
 interface MovieComponentProps {
   movie: Movie;
