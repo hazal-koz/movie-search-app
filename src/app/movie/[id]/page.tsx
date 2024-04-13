@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Flex } from "antd";
 import ImageWithFallback from "@/components/imageWithFallback";
 import styles from "./page.module.css";
 import { Header } from "@/components/moviePage/header";
 import { MovieDetails } from "@/components/moviePage/movieDetails";
+import useGetMovieById from "@/hooks/useGetMovieById";
 
 export interface Movie {
   Title: string;
@@ -25,27 +25,9 @@ export interface Movie {
   imdbID: string;
 }
 
-const getMovieParams = (imdbId: string) => {
-  const queryParams = {
-    ...(process.env.apiKey && { apikey: process.env.apiKey }),
-    ...(imdbId && { i: imdbId }),
-  };
-  return new URLSearchParams(queryParams).toString();
-};
-
 export default function Page({ params }: { params: { id: string } }) {
-  const [movie, setMovie] = useState<Movie>();
+  const { movie } = useGetMovieById(params.id);
 
-  useEffect(() => {
-    const fetchMovies = () => {
-      fetch(`http://www.omdbapi.com/?${getMovieParams(params.id)}`)
-        .then((res) => res.json())
-        .then((res) => {
-          setMovie(res);
-        });
-    };
-    fetchMovies();
-  }, []);
   return (
     <>
       {movie && (
