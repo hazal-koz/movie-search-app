@@ -87,6 +87,7 @@ export const MovieTable = ({ dataSource, loading }: MovieTableProps) => {
       pagination={tableParams.pagination}
       loading={loading}
       onChange={handleTableChange}
+      scroll={{ y: "50vh" }}
     />
   );
 };
